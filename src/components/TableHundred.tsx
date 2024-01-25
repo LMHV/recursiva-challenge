@@ -21,7 +21,7 @@ interface TableHundredProps {
 export const TableHundred = ({ data }: TableHundredProps) => {
 
   return (
-    <Table className='bg-white rounded-xl '>
+    <Table className='bg-white rounded-xl'>
       <TableCaption className="sticky bottom-0 bg-white">Lista de los primeros 100 socios (Casados&Universitarios).</TableCaption>
       <TableHeader className="sticky top-0 bg-white ">
         <TableRow>

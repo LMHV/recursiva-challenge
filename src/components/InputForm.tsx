@@ -92,7 +92,7 @@ export function InputForm() {
 
       const resultados: TeamResult[] = Object.keys(teamStatistics).map((equipo) => {
         const stats: TeamStatistics = teamStatistics[equipo];
-        const averageAge: number = (stats.totalAge / stats.cantidadSocios);
+        const averageAge: number = Number((stats.totalAge / stats.cantidadSocios).toFixed(2));
 
         return {
           equipo,
@@ -121,7 +121,7 @@ export function InputForm() {
 
   return (
     <div className='flex flex-row items-center justify-center h-screen relative'>
-      <div className='bg-white rounded-xl shadow-2xl w-[300px] h-[400px] flex items-center justify-center m-5'>
+      <div className='bg-white rounded-xl border shadow-2xl w-[300px] h-[400px] flex items-center justify-center m-5'>
         <div className='flex flex-row gap-x-4 items-center justify-center'>
           <div className='size-10 bg-indigo-500 flex items-center justify-center rounded-full text-white'>
             <svg className="icon icon-tabler icon-tabler-plus" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="" /><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
@@ -139,32 +139,34 @@ export function InputForm() {
           </div>
         </div>
       </div>
-      {data.length && totalAgeRacing && countRacing
-        ? <div className='flex flex-col gap-y-10 m-5'>
-          <DataField label='Total registrados' data={data.length} />
-          <DataField label='Promedio edad socios Racing' data={Math.round(totalAgeRacing / countRacing)} />
+
+      <div className='flex flex-col items-center justify-center'>
+
+        <div className='flex flex-row gap-x-4'>
+          {firstHundred.length
+            ? <div className='h-[500px] w-[400px] overflow-y-auto relative rounded-xl shadow-xl border'>
+              <TableHundred data={firstHundred} />
+            </div>
+            : null}
+
+          {commonNames.length
+            ? <div className='h-[500px] w-[200px] overflow-y-auto relative rounded-xl shadow-xl border'>
+              <TableCommonNames data={commonNames} />
+            </div>
+            : null}
+          {teams.length
+            ? (<div className='h-[500px] w-[600px] overflow-y-auto relative rounded-xl shadow-xl border' >
+              <TableTeams data={teams} />
+            </div>)
+            : null
+          }
         </div>
-        : null}
-
-      <div className='flex flex-row gap-x-4'>
-        {firstHundred.length
-          ? <div className='h-[500px] w-[400px] overflow-y-auto relative rounded-sm shadow-xl'>
-            <TableHundred data={firstHundred} />
+        {data.length && totalAgeRacing && countRacing
+          ? <div className='flex flex-row gap-x-10 m-5'>
+            <DataField label='Total registrados' data={data.length} />
+            <DataField label='Promedio edad socios Racing' data={Math.round(totalAgeRacing / countRacing)} />
           </div>
           : null}
-
-        {commonNames.length
-          ? <div className='h-[400px] w-[200px] overflow-y-auto relative rounded-sm shadow-xl'>
-            <TableCommonNames data={commonNames} />
-          </div>
-          : null}
-        {teams.length
-          ? (<div className='h-[500px] w-[600px] overflow-y-auto relative rounded-sm shadow-xl' >
-            <TableTeams data={teams} />
-          </div>)
-          : null
-        }
-
       </div>
       <img src="src\assets\images\recursivalogo.png" alt="" className='absolute bottom-10 left-10 w-[200px] h-[100px]' />
     </div >
