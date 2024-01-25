@@ -92,7 +92,7 @@ export function InputForm() {
 
       const resultados: TeamResult[] = Object.keys(teamStatistics).map((equipo) => {
         const stats: TeamStatistics = teamStatistics[equipo];
-        const averageAge: number = Math.round(stats.totalAge / stats.cantidadSocios);
+        const averageAge: number = (stats.totalAge / stats.cantidadSocios);
 
         return {
           equipo,
