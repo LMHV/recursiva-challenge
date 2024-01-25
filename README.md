@@ -10,7 +10,7 @@ Make sure you have Node.js and npm installed on your machine.
 ### Installation
 
    ```bash
-   git clone https://github.com/your-username/recursiva-challenge
+   git clone https://github.com/LMHV/recursiva-challenge
 
    cd / to project folder
 
