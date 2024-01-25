@@ -120,7 +120,7 @@ export function InputForm() {
   }, [data]); // Corre unicamente cuando se actualiza la data y en el primer render.
 
   return (
-    <div className='flex flex-row items-center justify-center h-screen '>
+    <div className='flex flex-row items-center justify-center h-screen relative'>
       <div className='bg-white rounded-xl shadow-2xl w-[300px] h-[400px] flex items-center justify-center m-5'>
         <div className='flex flex-row gap-x-4 items-center justify-center'>
           <div className='size-10 bg-indigo-500 flex items-center justify-center rounded-full text-white'>
@@ -139,10 +139,13 @@ export function InputForm() {
           </div>
         </div>
       </div>
-      <div className='flex flex-col gap-y-10 m-5'>
-        <DataField label='Total registrados' data={data.length} />
-        <DataField label='Promedio edad socios Racing' data={Math.round(totalAgeRacing / countRacing)} />
-      </div>
+      {data.length && totalAgeRacing && countRacing
+        ? <div className='flex flex-col gap-y-10 m-5'>
+          <DataField label='Total registrados' data={data.length} />
+          <DataField label='Promedio edad socios Racing' data={Math.round(totalAgeRacing / countRacing)} />
+        </div>
+        : null}
+
       <div className='flex flex-row gap-x-4'>
         {firstHundred.length
           ? <div className='h-[500px] w-[400px] overflow-y-auto relative rounded-sm shadow-xl'>
@@ -163,6 +166,7 @@ export function InputForm() {
         }
 
       </div>
+      <img src="src\assets\images\recursivalogo.png" alt="" className='absolute bottom-10 left-10 w-[200px] h-[100px]' />
     </div >
   )
 }
